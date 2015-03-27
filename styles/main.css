@@ -1,0 +1,46 @@
+.banner {
+  width: 100%;
+  height: auto;
+  position: relative;
+}
+
+.image {
+  width: 100%;
+  height: 500px;
+  position: absolute;
+  z-index: -9999;
+}
+
+.banner .ative {
+  z-index: 1;
+}
+
+.dots {
+  z-index: 9999;
+  position: absolute;
+  bottom: 0;
+}
+
+.dot {
+  display: inline;
+}
+
+.dots .ative {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.mySlide-fullscreen, .mySlide-fullscreen body, .mySlide-fullscreen body .banner, .mySlide-fullscreen body .banner .image {
+  width: 100%;
+  height: 100%;
+}
+
+.next, .previous {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+
+.previous {
+  right: 70px;
+}
