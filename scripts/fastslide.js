@@ -4,7 +4,6 @@
 
   $.fn.fastSlide = function(defaults) {
 
-    // CONSIDERAR USAR PEGAR OPTIONS POR DATA ATRIBUTES, PARA O USUÁRIO NÃO PRECISAR TANTO EM JS.
     var options = {
       'dots':         true,
       'time':         3000,
@@ -75,8 +74,10 @@
           }
 
           $childBanner.eq(current).addClass(settings.currentClass);
-          if(settings.dots)
+
+          if(settings.dots) {
             $childDots.eq(current).addClass(settings.currentClass);
+          }
         },
 
         previousSlide: function() {
@@ -89,8 +90,10 @@
           }
 
           $childBanner.eq(current).addClass(settings.currentClass);
-          if(settings.dots)
+
+          if(settings.dots) {
             $childDots.eq(current).addClass(settings.currentClass);
+          }
         },
 
         keyboard: function() {
@@ -112,7 +115,7 @@
               }
 
             } else if(e.which === 32) {
-              // fix - Arrunar para ele não reiniciar e sim voltar de onde parou
+
               if(settings.autoPlay) {
 
                 if(thisStopped){
