@@ -3,35 +3,34 @@
 <head>
   <meta charset="UTF-8">
   <title>Fast Slide</title>
-  <link rel="stylesheet" href="styles/main.css">
-  <link rel="stylesheet" href="styles/reset.css">
+  <link rel="stylesheet" href="styles/fastslide-theme.css">
 </head>
 <body>
 
-  <div class="banner">
-    <div class="image">
-      <img src="http://lorempixel.com/1600/400/sports" alt="">
-    </div>
-    <div class="image">
-      <img src="http://lorempixel.com/1600/400/food" alt="">
-    </div>
-    <div class="image">
-      <img src="http://lorempixel.com/1600/400/city" alt="">
-    </div>
-    <div class="image">
-      <img src="http://lorempixel.com/1600/400/people" alt="">
-    </div>
-  </div>
+  <section class="banner" data-banner>
+    <figure class="image" data-image>
+      <img src="images/nature.jpg" alt="">
+    </figure>
+    <figure class="image" data-image>
+      <img src="images/creative-work.jpg" alt="">
+    </figure>
+    <figure class="image" data-image>
+      <img src="images/office.png" alt="">
+    </figure>
+    <figure class="image" data-image>
+      <img src="images/working.jpg" alt="">
+    </figure>
+  </section>
 
-  <ul class="dots">
-    <li class="dot">1</li>
-    <li class="dot">2</li>
-    <li class="dot">3</li>
-    <li class="dot">4</li>
+  <ul class="dots" data-dots>
+    <li class="dot" data-dot>1</li>
+    <li class="dot" data-dot>2</li>
+    <li class="dot" data-dot>3</li>
+    <li class="dot" data-dot>4</li>
   </ul>
 
-  <div class="next">next</div>
-  <div class="previous">previous</div>
+  <div class="next" data-next>next</div>
+  <div class="previous" data-prev>previous</div>
 
   <script src="scripts/vendor/jQuery.min.js"></script>
   <script src="scripts/fastslide.js"></script>

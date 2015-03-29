@@ -6,33 +6,33 @@
 
     var options = {
       'dots':         true,
-      'time':         3000,
+      'time':         2000,
       'autoPlay':     true,
-      'keyborad':     true,
-      'fullScreen':   false,
-      'currentClass': 'ative',
+      'keyboard':     true,
+      'fullScreen':   false
     };
 
     var settings = $.extend( {}, options, defaults );
 
-    var _this = this,
-        intervalSlide,
+    var intervalSlide,
         thisStopped = false,
         current = 0,
-        $childBanner = $('.image', '.banner'),
-        $childDots = $('.dot', '.dots'),
-        $buttonNext = $('.next'),
-        $buttonPrevious = $('.previous'),
+        $childBanner = $('[data-image]', '[data-banner]'),
+        $childDots = $('[data-dot]', '[data-dots]'),
+        $buttonNext = $('[data-next]'),
+        $buttonPrevious = $('[data-prev]'),
         allChildren = $childBanner.length,
-        syncCurrentAndChild = allChildren - 1;
+        syncCurrentAndChild = allChildren - 1,
+        currentClass = 'ative';
 
     return this.each( function(){
 
       function init() {
-        $childBanner.first().addClass(settings.currentClass);
+        $childBanner.first().addClass(currentClass);
+        $childBanner.not('.' + currentClass).css('left', '100%');
 
         if(settings.dots) {
-          $childDots.first().addClass(settings.currentClass);
+          $childDots.first().addClass(currentClass);
         }
 
         if(settings.fullScreen) {
@@ -43,7 +43,7 @@
           methods.play();
         }
 
-        if(settings.keyborad) {
+        if(settings.keyboard) {
           methods.keyboard();
         }
 
@@ -59,60 +59,67 @@
         },
 
         play : function() {
-          intervalSlide = setInterval( function(){
+          intervalSlide = setInterval( function(){            
             methods.nextSlide();
           }, settings.time);
         },
 
         nextSlide: function() {
-          $childBanner.removeClass(settings.currentClass);
-          $childDots.removeClass(settings.currentClass);
+
+          $childBanner.removeClass(currentClass);
+          $childDots.removeClass(currentClass);
           current++;
 
           if(allChildren === current) {
             current = 0;
           }
 
-          $childBanner.eq(current).addClass(settings.currentClass);
+          setTimeout( function(){
+            $childBanner.not('.' + currentClass).css('left', '100%');
+          }, 500);
+
+          $childBanner.eq(current)
+          .addClass(currentClass)
+          .animate({
+            left: '0%'
+          }, 500);
 
           if(settings.dots) {
-            $childDots.eq(current).addClass(settings.currentClass);
+            $childDots.eq(current).addClass(currentClass);
           }
         },
 
         previousSlide: function() {
-          $childBanner.removeClass(settings.currentClass);
-          $childDots.removeClass(settings.currentClass);
+          $childBanner.removeClass(currentClass);
+          $childDots.removeClass(currentClass);
           current--;
+
+          setTimeout( function(){
+            $childBanner.not('.' + currentClass).css('left', '100%');
+          }, 500);
 
           if(current < 0) {
             current = syncCurrentAndChild;
           }
 
-          $childBanner.eq(current).addClass(settings.currentClass);
+          $childBanner.eq(current)
+          .addClass(currentClass)
+          .animate({
+            left: '0%'
+          }, 500);
 
           if(settings.dots) {
-            $childDots.eq(current).addClass(settings.currentClass);
+            $childDots.eq(current).addClass(currentClass);
           }
         },
 
         keyboard: function() {
           $(document).bind('keyup', function(e){
             if(e.which === 39) {
-              clearInterval(intervalSlide);
-              methods.nextSlide();
-
-              if(settings.autoPlay) {
-                methods.play();
-              }
+              methods.next();
 
             } else if(e.which === 37) {
-              clearInterval(intervalSlide);
-              methods.previousSlide();
-
-              if(settings.autoPlay) {
-                methods.play();
-              }
+              methods.previous();
 
             } else if(e.which === 32) {
 
@@ -120,13 +127,11 @@
 
                 if(thisStopped){
                   methods.play();
-                  console.log('play');
                   thisStopped = false;
 
                 } else {
                   clearInterval(intervalSlide);
                   thisStopped = true;
-                  console.log('pause');
 
                 }
               }
@@ -137,26 +142,33 @@
 
         mouseEvents: function() {
           $buttonNext.on('click', function(){
-            clearInterval(intervalSlide);
-            methods.nextSlide();
-
-            if(settings.autoPlay) {
-              methods.play();
-            }
+            methods.next();
           });
 
           $buttonPrevious.on('click', function(){
-            clearInterval(intervalSlide);
-            methods.previousSlide();
-
-            if(settings.autoPlay) {
-              methods.play();
-            }
+            methods.previous();
           });
+        },
+
+        next: function() {
+          clearInterval(intervalSlide);
+          methods.nextSlide();
+
+          if(settings.autoPlay) {
+            methods.play();
+          }
+        },
+
+        previous: function(){
+          clearInterval(intervalSlide);
+          methods.previousSlide();
+
+          if(settings.autoPlay) {
+            methods.play();
+          }
         }
       }
 
-      // init all functions
       init();
 
     });
