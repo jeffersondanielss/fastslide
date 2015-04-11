@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Fast Slide</title>
+  <link rel="stylesheet" href="../src/styles/fastslide-theme.css">
+</head>
+<body>
+
+<div class="fs-container">
+  <section class="fastslide">
+    <figure class="image">
+      <img src="images/nature.jpg" alt="Nature">
+    </figure>
+    <figure class="image">
+      <img src="images/creative-work.jpg" alt="Creative Work">
+    </figure>
+    <figure class="image">
+      <img src="images/office.png" alt="Office">
+    </figure>
+    <figure class="image">
+      <img src="images/working.jpg" alt="Working">
+    </figure>
+  </section>
+</div>
+
+  <ul class="dots" data-dots>
+    <li class="dot" data-dot>1</li>
+    <li class="dot" data-dot>2</li>
+    <li class="dot" data-dot>3</li>
+    <li class="dot" data-dot>4</li>
+  </ul>
+
+  <div class="next" data-next>next</div>
+  <div class="previous" data-prev>previous</div>
+
+  <script src="../src/vendor/jQuery.min.js"></script>
+  <script src="../src/fastslide.js"></script>
+  <script>
+    $(function(){
+      $('.fastslide').fastSlide({
+        dots: true,
+        autoPlay: true,
+        time: 5000,
+        keyboard: true,
+        delay: 1000,
+      });
+    });
+  </script>
+</body>
+</html>

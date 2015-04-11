@@ -1,0 +1,44 @@
+html, body, .image {
+  margin: 0px;
+  padding: 0px;
+}
+
+.fs-container {
+  width: 100%;
+  overflow: hidden;
+  max-height: 500px;
+}
+
+.fastslide {
+  position: relative;
+}
+
+.image {
+  float: left;
+}
+
+.dots {
+  z-index: 9999;
+  position: absolute;
+  bottom: 0;
+}
+
+.dot {
+  display: inline;
+}
+
+.dots .ative {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.next, .previous {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+}
+
+.previous {
+  right: 70px;
+}

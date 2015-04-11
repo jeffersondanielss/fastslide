@@ -1,0 +1,25 @@
+{
+  "name": "fastslide",
+  "version": "1.1.0",
+  "description": "customizable, easy and quick application.",
+  
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/zero-oitocentos/fastslide.git"
+  },
+
+  "keywords": [
+    "jQuery",
+    "Slide",
+    "Carousel"
+  ],
+
+  "author": "jeffersondanielss",
+  "license": "ISC",
+
+  "bugs": {
+    "url": "https://github.com/zero-oitocentos/fastslide/issues"
+  },
+
+  "homepage": "https://github.com/zero-oitocentos/fastslide"
+}
