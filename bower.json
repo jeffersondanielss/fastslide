@@ -1,0 +1,24 @@
+{
+  "name": "fastslide",
+  "version": "1.1.0",
+  "homepage": "https://github.com/zero-oitocentos/fastslide",
+  "authors": [
+    "Jefferson Daniel <jeffersondaniels@hotmail.com>"
+  ],
+  "description": "customizable, easy and quick application.",
+  "main": "src/fastslide.js",
+  "keywords": [
+    "slide"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jquery": "~2.1.3"
+  }
+}
