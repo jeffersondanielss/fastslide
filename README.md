@@ -1,4 +1,4 @@
-# Fastslide [![Code Climate](https://codeclimate.com/github/zero-oitocentos/fastslide/badges/gpa.svg)](https://codeclimate.com/github/zero-oitocentos/fastslide)
+# Fastslide [![Code Climate](https://codeclimate.com/github/jeffersondanielss/fastslide/badges/gpa.svg)](https://codeclimate.com/github/jeffersondanielss/fastslide)
 
 > Customizable, easy and quick application.
 
