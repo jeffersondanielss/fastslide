@@ -7,7 +7,7 @@ This plugin requires [jQuery](http://jquery.com/)
 ### Install
 Instalation using bower.
 ```bash
-bower install fastslide --save
+bower install fastslide.js --save
 ```
 or download the .zip [here](https://github.com/jeffersondanielss/fastslide/archive/master.zip).
 
