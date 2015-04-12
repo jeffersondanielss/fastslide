@@ -2,25 +2,17 @@
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Fast Slide</title>
-  <link rel="stylesheet" href="../src/styles/fastslide-theme.css">
+  <title>Fastslide - More basic use</title>
+  <link rel="stylesheet" href="../src/styles/fastslide.css">
 </head>
 <body>
 
 <div class="fs-container">
   <section class="fastslide">
-    <figure class="image">
-      <img src="images/nature.jpg" alt="Nature">
-    </figure>
-    <figure class="image">
-      <img src="images/creative-work.jpg" alt="Creative Work">
-    </figure>
-    <figure class="image">
-      <img src="images/office.png" alt="Office">
-    </figure>
-    <figure class="image">
-      <img src="images/working.jpg" alt="Working">
-    </figure>
+    <img class="image" src="images/nature.jpg" alt="Nature">
+    <img class="image" src="images/creative-work.jpg" alt="Creative Work">
+    <img class="image" src="images/office.png" alt="Office">
+    <img class="image" src="images/working.jpg" alt="Working">
   </section>
 </div>
 
@@ -35,15 +27,15 @@
   <div class="previous" data-prev>previous</div>
 
   <script src="../bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="../src/fastslide.js"></script>
+  <script src="../src/fastslide.min.js"></script>
   <script>
     $(function(){
       $('.fastslide').fastSlide({
         dots: true,
         autoPlay: true,
-        time: 5000,
+        time: 6000,
         keyboard: true,
-        delay: 1000,
+        delay: 2000,
       });
     });
   </script>

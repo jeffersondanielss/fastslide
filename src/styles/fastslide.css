@@ -1,0 +1,18 @@
+html, body, .image {
+  margin: 0px;
+  padding: 0px;
+}
+
+.fs-container {
+  width: 100%;
+  overflow: hidden;
+  height: 300px;
+}
+
+.fastslide {
+  position: relative;
+}
+
+.image {
+  float: left;
+}

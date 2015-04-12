@@ -5,33 +5,31 @@
   $.fn.fastSlide = function(defaults) {
 
     var options = {
-      'dots':         true,
+      'dots':         !1,
       'time':         4000,
-      'autoPlay':     true,
-      'keyboard':     true,
+      'autoPlay':     !0,
+      'keyboard':     !0,
       'delay' :       1000,
     };
 
     var settings = $.extend( {}, options, defaults );
 
     var intervalSlide,
-        thisStopped = false,
+        thisStopped = !1,
         current = 0,
         currentClass = 'ative',
-        animated = false,
+        animated = !1,
         $childBanner = $('.image', '.fastslide'),
         $childDots = $('[data-dot]', '[data-dots]'),
         $buttonNext = $('[data-next]'),
-        $buttonPrevious = $('[data-prev]'),
+        $buttonPrev = $('[data-prev]'),
         $allChildren = $childBanner.length,
-        $banner = $('.fastslide'),
-        widthBanner = $allChildren + '00%',
-        syncCurrentAndChild = $allChildren - 1;
+        $banner = $('.fastslide');
 
     return this.each( function(){
 
       function init() {
-        $banner.css('width', widthBanner);
+        $banner.css('width', $allChildren + '00%');
         $childBanner.css('width', 100/$allChildren + '%');
 
         if(settings.dots) {
@@ -55,50 +53,65 @@
         play : function() {
           intervalSlide = setInterval( function(){
             if(!animated) {
-              methods.nextSlide();
+              animated = !0;
+              current++;
+
+              if($allChildren === current) {
+                console.log($allChildren);
+                current = 0;
+              }
+
+              methods.move();
             }
           }, settings.time);
         },
 
-        nextSlide: function() {
-          animated = true;
-          $childBanner.removeClass(currentClass);
-          $childDots.removeClass(currentClass);
+        move: function() {
+          $banner.animate({
+              marginLeft: '-' + current + '00%'
+          }, settings.delay,
+          
+          function(){
+              animated = !1;
+          });
+
+          if(settings.dots) {
+            $childDots.removeClass(currentClass);
+            $childDots.eq(current).addClass(currentClass);
+          }
+        },
+
+        next: function() {
+          clearInterval(intervalSlide);
+          animated = !0;
           current++;
 
           if($allChildren === current) {
+            console.log($allChildren);
             current = 0;
           }
 
-          $banner.animate({
-            marginLeft: '-' + current + '00%'
-          }, settings.delay, function(){
-            animated = false;
-          });
+          methods.move();
 
-          if(settings.dots) {
-            $childDots.eq(current).addClass(currentClass);
-          }          
+          if(settings.autoPlay) {
+            methods.play();
+          }
         },
 
-        previousSlide: function() {
-          animated = true;
-          $childBanner.removeClass(currentClass);
-          $childDots.removeClass(currentClass);
+        prev: function() {
+          clearInterval(intervalSlide);
+          animated = !0;
           current--;
 
           if(current < 0) {
-            current = syncCurrentAndChild;
+            console.log(current);
+            current = $allChildren - 1;
           }
 
-          $banner.animate({
-            marginLeft: '-' + current + '00%'
-          }, settings.delay, function(){
-            animated = false;
-          });
+          methods.move();
 
-          if(settings.dots) {
-            $childDots.eq(current).addClass(currentClass);
+          if(settings.autoPlay) {
+            methods.play();
           }
         },
 
@@ -108,7 +121,7 @@
               methods.next();
 
             } else if(e.which === 37 && !animated) {
-              methods.previous();
+              methods.prev();
 
             } else if(e.which === 32) {
 
@@ -116,11 +129,11 @@
 
                 if(thisStopped){
                   methods.play();
-                  thisStopped = false;
+                  thisStopped = !1;
 
                 } else {
                   clearInterval(intervalSlide);
-                  thisStopped = true;
+                  thisStopped = !0;
 
                 }
               }
@@ -136,29 +149,11 @@
             }
           });
 
-          $buttonPrevious.on('click', function(){
+          $buttonPrev.on('click', function(){
             if(!animated) {
-              methods.previous();
+              methods.prev();
             }
           });
-        },
-
-        next: function() {
-          clearInterval(intervalSlide);
-          methods.nextSlide();
-
-          if(settings.autoPlay) {
-            methods.play();
-          }
-        },
-
-        previous: function(){
-          clearInterval(intervalSlide);
-          methods.previousSlide();
-
-          if(settings.autoPlay) {
-            methods.play();
-          }
         },
 
         dots: function() {
@@ -166,7 +161,7 @@
             var indexThis = $(this).index();
 
             if(!animated) {
-              animated = true;
+              animated = !0;
               $childDots.removeClass(currentClass);
               $childDots.eq(indexThis).addClass(currentClass);
 
@@ -174,7 +169,7 @@
                 marginLeft: '-' + indexThis + '00%'
               }, settings.delay, function(){
 
-                animated = false;
+                animated = !1;
                 current = indexThis;
               });
 
