@@ -23,6 +23,8 @@
         $childDots = $('[data-dot]', '[data-dots]'),
         $buttonNext = $('[data-next]'),
         $buttonPrev = $('[data-prev]'),
+        $buttonPlay = $('[data-play]'),
+        $buttonStop = $('[data-stop]'),
         $allChildren = $childBanner.length,
         $banner = $('.fastslide');
 
@@ -70,7 +72,7 @@
           $banner.animate({
               marginLeft: '-' + current + '00%'
           }, settings.delay,
-          
+
           function(){
               animated = !1;
           });
@@ -153,6 +155,14 @@
             if(!animated) {
               methods.prev();
             }
+          });
+
+          $buttonPlay.on('click', function(){
+            methods.play();
+          });
+
+          $buttonStop.on('click', function(){
+            clearInterval(intervalSlide);
           });
         },
 
