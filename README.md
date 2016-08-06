@@ -38,7 +38,7 @@ Type: `number` Default `1000`
 Sets the delay of the transition from slides
 
 ### Basic markup
-```bash
+```html
 <div class="fs-container">
   <div class="fastslide">
     <img class="image" src="your-image.jpg">
@@ -47,7 +47,7 @@ Sets the delay of the transition from slides
     <img class="image" src="your-image.jpg">
   </div>
 </div>
-...
+
 <script src="../src/fastslide.min.js"></script>
   <script>
     $(function(){
@@ -57,7 +57,7 @@ Sets the delay of the transition from slides
 ```
 
 ### Basic style
-```bash
+```css
 html, body, .image {
   margin: 0px;
   padding: 0px;
